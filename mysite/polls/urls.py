@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import (
 
 from django.http import HttpResponse
 
-from polls.views.user import UserApi, TestAuth
+from polls.views.user import UserApi, TestAuth, LoginImage
 from polls.views.image import image_upload_view
 
 
@@ -20,5 +20,6 @@ urlpatterns = [
     path("api/test", TestAuth.as_view(), name="aaindex"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("api/upload", image_upload_view, name="image"),
+    path("api/upload", LoginImage.as_view(), name="image"),
+
 ]

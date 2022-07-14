@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from marshmallow import Schema, fields
 from polls.models import OUserModel
+from polls.models import Image
 
 
 class UserSchema(Schema):
@@ -34,7 +35,15 @@ class TestAuth(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        del request
+        print(request.user)
 
         a = OUserModel.objects.all()
         return Response(UserSchema().dump(a, many=True))
+
+class LoginImage(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        Image(title=request.POST["title"], image=request.FILES["image"], user=request.user).save()
+
+        return Response()
