@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  orientarium:
+    container_name: orientarium
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
