@@ -6,17 +6,21 @@ from polls.models import OUserModel
 
 
 class UserSchema(Schema):
-    email = fields.Str(required=True)
-    password = fields.Str(required=True)
-    first_name = fields.Str(required=True)
-    last_name = fields.Str(required=True)
+    email = fields.Str(required=True, data_key="Email")
+    password = fields.Str(required=True, data_key="Password")
+    gender = fields.Str(required=True, data_key="Gender")
+    pin = fields.Str(required=True, data_key="PIN")
+    username = fields.Str(required=True, data_key="Username")
+    birthday = fields.Str(required=True, data_key="BirthDay")
 
 
 class UserApi(APIView):
     def post(self, request):
         data = UserSchema().load(request.data)
         email = data.pop("email")
-        OUserModel.objects.create_user(email, email, data.pop("password"), **data)
+        username = data.pop("username")
+        password = data.pop("password")
+        OUserModel.objects.create_user(username, email, password, **data)
         return Response()
 
     def get(self, request):

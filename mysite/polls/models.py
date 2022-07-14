@@ -10,11 +10,13 @@ class OUserModel(AbstractUser):
         unique=True,
         error_messages={"unique": "An owner with that email already exists."},
     )
-    first_name = models.TextField()
-    last_name = models.TextField()
     password = models.TextField()
+    gender = models.TextField()
+    pin = models.TextField()
+    username = models.TextField(unique=True)
+    birthday = models.TextField()
 
-    USERNAME_FIELD: str = "email"
+    USERNAME_FIELD: str = "username"
     REQUIRED_FIELDS: list = []
 
 

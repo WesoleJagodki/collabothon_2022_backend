@@ -15,10 +15,10 @@ def index(request):
 
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("user", UserApi.as_view(), name="index"),
-    path("test", TestAuth.as_view(), name="aaindex"),
+    path("api/", index, name="index"),
+    path("api/user", UserApi.as_view(), name="index"),
+    path("api/test", TestAuth.as_view(), name="aaindex"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("upload", image_upload_view, name="image"),
+    path("api/upload", image_upload_view, name="image"),
 ]
